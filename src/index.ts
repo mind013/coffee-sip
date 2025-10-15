@@ -1,6 +1,13 @@
 import { Chatbot } from './lib/chatbot';
 import type { ChatbotConfig } from './types';
 
+// Extend the Window interface to include ChatbotWidget
+declare global {
+  interface Window {
+    ChatbotWidget?: typeof ChatbotWidget;
+  }
+}
+
 // Export types
 export type { ChatbotConfig, Message, ChatResponse } from './types';
 
@@ -45,8 +52,8 @@ export const ChatbotWidget = {
 
 // Attach to window for UMD usage
 if (typeof window !== 'undefined') {
-  (window as any).ChatbotWidget = ChatbotWidget;
-  (window as any).CoffeeSip = ChatbotWidget; // Alternative name
+  (window as Window & typeof globalThis).ChatbotWidget = ChatbotWidget;
+  (window as Window & typeof globalThis & { CoffeeSip?: typeof ChatbotWidget }).CoffeeSip = ChatbotWidget; // Alternative name
 }
 
 // Default export

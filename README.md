@@ -58,7 +58,7 @@ ChatbotWidget.init({
 </head>
 <body>
   <h1>Welcome to my site</h1>
-  
+
   <!-- Load the chatbot widget -->
   <script src="https://unpkg.com/coffee-sip@latest/dist/coffee-sip.umd.js"></script>
   <script>
@@ -87,7 +87,7 @@ interface ChatbotConfig {
   theme?: 'light' | 'dark'; // UI theme (default: 'light')
   position?: 'bottom-right' | 'bottom-left'; // Widget position (default: 'bottom-right')
   primaryColor?: string;    // Custom primary color (default: '#007bff')
-  
+
   // Event Callbacks
   onOpen?: () => void;      // Called when chat window opens
   onClose?: () => void;     // Called when chat window closes

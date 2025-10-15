@@ -9,7 +9,7 @@ export const chatbotStyles = `
   --cs-bot-msg-bg: #f1f3f4;
   --cs-border-color: #e0e0e0;
   --cs-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  
+
   position: fixed;
   z-index: 999999;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

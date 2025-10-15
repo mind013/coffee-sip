@@ -134,11 +134,11 @@ export class Chatbot {
 
   private open(): void {
     if (!this.chatWindow || this.isOpen) return;
-    
+
     this.chatWindow.classList.add('open');
     this.isOpen = true;
     this.inputField?.focus();
-    
+
     if (this.config.onOpen) {
       this.config.onOpen();
     }
@@ -146,10 +146,10 @@ export class Chatbot {
 
   private close(): void {
     if (!this.chatWindow || !this.isOpen) return;
-    
+
     this.chatWindow.classList.remove('open');
     this.isOpen = false;
-    
+
     if (this.config.onClose) {
       this.config.onClose();
     }
@@ -169,7 +169,7 @@ export class Chatbot {
       timestamp: new Date(),
     };
     this.addMessage(userMessage);
-    
+
     // Clear input and disable
     this.inputField.value = '';
     this.sendButton.disabled = true;
@@ -191,8 +191,8 @@ export class Chatbot {
     // Add bot response
     const botMessage: Message = {
       id: (Date.now() + 1).toString(),
-      text: response.success 
-        ? response.message 
+      text: response.success
+        ? response.message
         : `Sorry, I encountered an error: ${response.error}`,
       sender: 'bot',
       timestamp: new Date(),
@@ -217,7 +217,7 @@ export class Chatbot {
     const messageDiv = createElement('div', `coffee-sip-message ${message.sender}`);
     const bubble = createElement('div', 'coffee-sip-message-bubble');
     bubble.innerHTML = escapeHtml(message.text);
-    
+
     const time = createElement('div', 'coffee-sip-message-time');
     time.textContent = formatTime(message.timestamp);
 
@@ -234,7 +234,7 @@ export class Chatbot {
 
     const typingDiv = createElement('div', 'coffee-sip-message bot');
     typingDiv.id = 'coffee-sip-typing-indicator';
-    
+
     const bubble = createElement('div', 'coffee-sip-message-bubble');
     const typing = createElement('div', 'coffee-sip-typing');
     typing.innerHTML = `
@@ -242,7 +242,7 @@ export class Chatbot {
       <div class="coffee-sip-typing-dot"></div>
       <div class="coffee-sip-typing-dot"></div>
     `;
-    
+
     bubble.appendChild(typing);
     typingDiv.appendChild(bubble);
     this.messagesContainer.appendChild(typingDiv);
@@ -261,12 +261,12 @@ export class Chatbot {
       this.container.remove();
       this.container = null;
     }
-    
+
     const styles = document.getElementById('coffee-sip-styles');
     if (styles) {
       styles.remove();
     }
-    
+
     const customStyles = document.getElementById('coffee-sip-custom-color');
     if (customStyles) {
       customStyles.remove();
@@ -275,7 +275,7 @@ export class Chatbot {
 
   public updateConfig(newConfig: Partial<ChatbotConfig>): void {
     this.config = { ...this.config, ...newConfig };
-    
+
     if (newConfig.apiUrl || newConfig.apiKey || newConfig.chatbot) {
       this.apiClient.updateConfig(newConfig.apiUrl, newConfig.apiKey, newConfig.chatbot);
     }

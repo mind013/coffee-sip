@@ -31,7 +31,7 @@ export class ApiClient {
       }
 
       const data = await response.json();
-      
+
       return {
         message: data.message || data.response || 'No response from server',
         success: true,
