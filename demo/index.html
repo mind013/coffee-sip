@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Sip Chatbot Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #444;
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .code-block {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 20px;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+
+    code {
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 14px;
+      color: #d63384;
+    }
+
+    .code-block code {
+      color: #333;
+      display: block;
+      white-space: pre;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    button.secondary {
+      background: #6c757d;
+    }
+
+    button.secondary:hover {
+      background: #5a6268;
+    }
+
+    button.danger {
+      background: #dc3545;
+    }
+
+    button.danger:hover {
+      background: #c82333;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .feature-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .feature-list li:before {
+      content: "✓ ";
+      color: #28a745;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .info-box {
+      background: #e7f3ff;
+      border-left: 4px solid #007bff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+
+    .info-box p {
+      margin: 0;
+      color: #004085;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .controls {
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>☕ Coffee Sip Chatbot Widget</h1>
+    <p class="subtitle">A lightweight, framework-agnostic chatbot widget for any website</p>
+
+    <div class="section">
+      <h2>🎮 Demo Controls</h2>
+      <div class="info-box">
+        <p>Click the buttons below to test different configurations and features of the chatbot widget.</p>
+      </div>
+      <div class="controls">
+        <button onclick="initDefault()">Initialize Default</button>
+        <button onclick="initDarkTheme()">Dark Theme</button>
+        <button onclick="initLeftPosition()">Left Position</button>
+        <button onclick="initCustomColor()">Custom Color</button>
+        <button class="secondary" onclick="getInstance()">Log Instance</button>
+        <button class="secondary" onclick="getMessages()">Get Messages</button>
+        <button class="danger" onclick="destroyWidget()">Destroy Widget</button>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>📦 Installation</h2>
+      <div class="code-block">
+        <code>npm install coffee-sip</code>
+      </div>
+      <p style="margin-bottom: 15px;">Or use via CDN:</p>
+      <div class="code-block">
+        <code>&lt;script src="https://cdn.example.com/coffee-sip.min.js"&gt;&lt;/script&gt;</code>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🚀 Usage</h2>
+      <div class="code-block">
+        <code>// ES Module
+import { ChatbotWidget } from 'coffee-sip';
+
+ChatbotWidget.init({
+  apiUrl: 'https://api.example.com/chat',
+  apiKey: 'your-api-key',
+  chatbot: 'chatbot-id',
+  theme: 'light',
+  position: 'bottom-right'
+});
+
+// Or via window object (UMD)
+window.ChatbotWidget.init({
+  apiUrl: 'https://api.example.com/chat',
+  apiKey: 'your-api-key',
+  chatbot: 'chatbot-id'
+});</code>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>✨ Features</h2>
+      <ul class="feature-list">
+        <li>Framework-agnostic - works with any website</li>
+        <li>Lightweight - less than 100KB uncompressed</li>
+        <li>Customizable themes (light/dark)</li>
+        <li>Flexible positioning (bottom-right/bottom-left)</li>
+        <li>Custom primary colors</li>
+        <li>Event hooks for open, close, send, and receive</li>
+        <li>Responsive design for mobile devices</li>
+        <li>TypeScript support with full type definitions</li>
+        <li>No external dependencies</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>⚙️ Configuration Options</h2>
+      <div class="code-block">
+        <code>interface ChatbotConfig {
+  apiUrl: string;           // Required: API endpoint
+  apiKey: string;           // Required: API authentication key
+  chatbot: string;          // Required: Chatbot ID
+  theme?: 'light' | 'dark'; // Optional: UI theme
+  position?: 'bottom-right' | 'bottom-left'; // Optional
+  primaryColor?: string;    // Optional: Custom color
+  onOpen?: () => void;      // Optional: Open callback
+  onClose?: () => void;     // Optional: Close callback
+  onMessageSend?: (msg: string) => void;    // Optional
+  onMessageReceive?: (msg: string) => void; // Optional
+}</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load the chatbot widget -->
+  <script type="module">
+    import { ChatbotWidget } from '../src/index.ts';
+
+    // Make it available globally for demo buttons
+    window.ChatbotWidget = ChatbotWidget;
+    window.currentWidget = null;
+
+    // Initialize with default config
+    window.initDefault = function() {
+      if (window.currentWidget) {
+        ChatbotWidget.destroy();
+      }
+      window.currentWidget = ChatbotWidget.init({
+        apiUrl: 'https://jsonplaceholder.typicode.com/posts',
+        apiKey: 'demo-api-key',
+        chatbot: 'demo-chatbot',
+        onOpen: () => console.log('Chatbot opened'),
+        onClose: () => console.log('Chatbot closed'),
+        onMessageSend: (msg) => console.log('Message sent:', msg),
+        onMessageReceive: (msg) => console.log('Message received:', msg),
+      });
+      console.log('✅ Default chatbot initialized');
+    };
+
+    window.initDarkTheme = function() {
+      if (window.currentWidget) {
+        ChatbotWidget.destroy();
+      }
+      window.currentWidget = ChatbotWidget.init({
+        apiUrl: 'https://jsonplaceholder.typicode.com/posts',
+        apiKey: 'demo-api-key',
+        chatbot: 'demo-chatbot',
+        theme: 'dark',
+      });
+      console.log('✅ Dark theme chatbot initialized');
+    };
+
+    window.initLeftPosition = function() {
+      if (window.currentWidget) {
+        ChatbotWidget.destroy();
+      }
+      window.currentWidget = ChatbotWidget.init({
+        apiUrl: 'https://jsonplaceholder.typicode.com/posts',
+        apiKey: 'demo-api-key',
+        chatbot: 'demo-chatbot',
+        position: 'bottom-left',
+      });
+      console.log('✅ Left position chatbot initialized');
+    };
+
+    window.initCustomColor = function() {
+      if (window.currentWidget) {
+        ChatbotWidget.destroy();
+      }
+      window.currentWidget = ChatbotWidget.init({
+        apiUrl: 'https://jsonplaceholder.typicode.com/posts',
+        apiKey: 'demo-api-key',
+        chatbot: 'demo-chatbot',
+        primaryColor: '#e74c3c',
+      });
+      console.log('✅ Custom color chatbot initialized');
+    };
+
+    window.destroyWidget = function() {
+      ChatbotWidget.destroy();
+      window.currentWidget = null;
+      console.log('🗑️ Chatbot destroyed');
+    };
+
+    window.getInstance = function() {
+      const instance = ChatbotWidget.getInstance();
+      console.log('Current instance:', instance);
+    };
+
+    window.getMessages = function() {
+      const instance = ChatbotWidget.getInstance();
+      if (instance) {
+        const messages = instance.getMessages();
+        console.log('Messages:', messages);
+      } else {
+        console.log('No chatbot instance active');
+      }
+    };
+
+    // Auto-initialize on load
+    window.initDefault();
+  </script>
+</body>
+</html>

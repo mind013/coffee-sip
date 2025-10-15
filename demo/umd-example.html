@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Sip - UMD Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 { color: #333; }
+    code {
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>☕ Coffee Sip - UMD Example</h1>
+    <p>This page demonstrates how to use Coffee Sip with a UMD build (script tag).</p>
+    <p>Check the browser console for logs and click the chat button in the bottom-right corner!</p>
+    <p><strong>Note:</strong> In production, you would load the script from a CDN like <code>https://unpkg.com/coffee-sip@latest/dist/coffee-sip.umd.js</code></p>
+  </div>
+
+  <!-- Load Coffee Sip from the dist folder -->
+  <script src="../dist/coffee-sip.umd.js"></script>
+  
+  <!-- Initialize the chatbot -->
+  <script>
+    // Using the global ChatbotWidget object
+    window.ChatbotWidget.init({
+      apiUrl: 'https://jsonplaceholder.typicode.com/posts',
+      apiKey: 'demo-api-key',
+      chatbot: 'demo-chatbot-umd',
+      theme: 'light',
+      position: 'bottom-right',
+      onOpen: () => console.log('✅ Chatbot opened (UMD)'),
+      onClose: () => console.log('❌ Chatbot closed (UMD)'),
+      onMessageSend: (msg) => console.log('📤 User sent:', msg),
+      onMessageReceive: (msg) => console.log('📥 Bot replied:', msg)
+    });
+
+    console.log('Coffee Sip initialized via UMD build!');
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "name": "coffee-sip",
+  "version": "1.0.0",
+  "description": "A lightweight, framework-agnostic chatbot widget library",
+  "type": "module",
+  "main": "./dist/coffee-sip.umd.js",
+  "module": "./dist/coffee-sip.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/coffee-sip.es.js",
+      "require": "./dist/coffee-sip.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "vitest"
+  },
+  "keywords": [
+    "chatbot",
+    "widget",
+    "chat",
+    "customer-support",
+    "vanilla-js"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jsdom": "^27.0.0",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "jsdom": "^23.0.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "^3.6.4",
+    "vitest": "^1.0.0"
+  }
+}
