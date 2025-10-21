@@ -5,6 +5,10 @@ node_modules/
 dist/
 *.local
 
+# Environment variables
+.env
+.env.local
+
 # IDE
 .vscode/
 .idea/

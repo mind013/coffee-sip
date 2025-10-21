@@ -274,6 +274,10 @@ You can override the default CSS variables for advanced customization:
 # Install dependencies
 npm install
 
+# Configure environment (for demo page)
+cp .env.example .env
+# Edit .env and add your chatbot configuration
+
 # Start dev server
 npm run dev
 
@@ -289,6 +293,18 @@ npm run lint
 # Format code
 npm run format
 ```
+
+### Environment Variables
+
+The demo page uses environment variables for configuration. Create a `.env` file in the root directory:
+
+```bash
+VITE_CHATBOT_API_URL=http://localhost:3000
+VITE_CHATBOT_API_KEY=your-api-key-here
+VITE_CHATBOT_UUID=your-chatbot-uuid-here
+```
+
+These variables are only used in the demo page during development. The production library requires configuration to be passed during initialization.
 
 ### Project Structure
 

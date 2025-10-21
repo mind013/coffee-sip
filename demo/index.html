@@ -254,15 +254,26 @@ window.ChatbotWidget.init({
     window.ChatbotWidget = ChatbotWidget;
     window.currentWidget = null;
 
+    // Load config from environment variables
+    const config = {
+      apiUrl: import.meta.env.VITE_CHATBOT_API_URL || 'http://localhost:3000',
+      apiKey: import.meta.env.VITE_CHATBOT_API_KEY || 'demo-api-key',
+      chatbot: import.meta.env.VITE_CHATBOT_UUID || 'demo-chatbot-uuid',
+    };
+
+    console.log('📝 Loaded config from .env:', { 
+      apiUrl: config.apiUrl,
+      apiKey: config.apiKey.substring(0, 8) + '...',
+      chatbot: config.chatbot.substring(0, 8) + '...',
+    });
+
     // Initialize with default config
     window.initDefault = function() {
       if (window.currentWidget) {
         ChatbotWidget.destroy();
       }
       window.currentWidget = ChatbotWidget.init({
-        apiUrl: 'https://jsonplaceholder.typicode.com/posts',
-        apiKey: 'demo-api-key',
-        chatbot: 'Mind13 Assistant',
+        ...config,
         onOpen: () => console.log('Chatbot opened'),
         onClose: () => console.log('Chatbot closed'),
         onMessageSend: (msg) => console.log('Message sent:', msg),
@@ -276,9 +287,7 @@ window.ChatbotWidget.init({
         ChatbotWidget.destroy();
       }
       window.currentWidget = ChatbotWidget.init({
-        apiUrl: 'https://jsonplaceholder.typicode.com/posts',
-        apiKey: 'demo-api-key',
-        chatbot: 'demo-chatbot',
+        ...config,
         theme: 'dark',
       });
       console.log('✅ Dark theme chatbot initialized');
@@ -289,9 +298,7 @@ window.ChatbotWidget.init({
         ChatbotWidget.destroy();
       }
       window.currentWidget = ChatbotWidget.init({
-        apiUrl: 'https://jsonplaceholder.typicode.com/posts',
-        apiKey: 'demo-api-key',
-        chatbot: 'demo-chatbot',
+        ...config,
         position: 'bottom-left',
       });
       console.log('✅ Left position chatbot initialized');
@@ -302,9 +309,7 @@ window.ChatbotWidget.init({
         ChatbotWidget.destroy();
       }
       window.currentWidget = ChatbotWidget.init({
-        apiUrl: 'https://jsonplaceholder.typicode.com/posts',
-        apiKey: 'demo-api-key',
-        chatbot: 'demo-chatbot',
+        ...config,
         primaryColor: '#e74c3c',
       });
       console.log('✅ Custom color chatbot initialized');
