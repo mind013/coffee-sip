@@ -2,6 +2,7 @@ import type { ChatbotConfig, Message } from '../types';
 import { ApiClient } from './api-client';
 import { createElement, injectStyles, escapeHtml, formatTime } from './dom-utils';
 import { chatbotStyles } from '../styles/chatbot.css';
+import { marked } from 'marked';
 
 export class Chatbot {
   private config: ChatbotConfig;
@@ -21,6 +22,13 @@ export class Chatbot {
       ...config,
     };
     this.apiClient = new ApiClient(config.apiUrl, config.apiKey, config.chatbot);
+
+    // Configure marked for safe rendering
+    marked.setOptions({
+      breaks: true, // Convert \n to <br>
+      gfm: true, // GitHub Flavored Markdown
+    });
+
     this.init();
   }
 
@@ -216,7 +224,13 @@ export class Chatbot {
 
     const messageDiv = createElement('div', `coffee-sip-message ${message.sender}`);
     const bubble = createElement('div', 'coffee-sip-message-bubble');
-    bubble.innerHTML = escapeHtml(message.text);
+
+    // Render bot messages as markdown, user messages as plain text
+    if (message.sender === 'bot') {
+      bubble.innerHTML = marked.parse(message.text) as string;
+    } else {
+      bubble.innerHTML = escapeHtml(message.text);
+    }
 
     const time = createElement('div', 'coffee-sip-message-time');
     time.textContent = formatTime(message.timestamp);

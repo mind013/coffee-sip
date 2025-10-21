@@ -32,6 +32,15 @@ export const chatbotStyles = `
   --cs-border-color: #404040;
 }
 
+/* Dark theme markdown code blocks */
+.coffee-sip-widget.theme-dark .coffee-sip-message.bot .coffee-sip-message-bubble code {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.coffee-sip-widget.theme-dark .coffee-sip-message.bot .coffee-sip-message-bubble pre {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .coffee-sip-button {
   width: 60px;
   height: 60px;
@@ -167,6 +176,81 @@ export const chatbotStyles = `
   color: var(--cs-text-color);
   border-bottom-left-radius: 4px;
 }
+
+/* Markdown styling for bot messages */
+.coffee-sip-message.bot .coffee-sip-message-bubble p {
+  margin: 0 0 8px 0;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble strong {
+  font-weight: 600;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble em {
+  font-style: italic;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble code {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble ul,
+.coffee-sip-message.bot .coffee-sip-message-bubble ol {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble li {
+  margin: 4px 0;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble a {
+  color: var(--cs-primary-color);
+  text-decoration: underline;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble blockquote {
+  border-left: 3px solid var(--cs-border-color);
+  margin: 8px 0;
+  padding-left: 12px;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble h1,
+.coffee-sip-message.bot .coffee-sip-message-bubble h2,
+.coffee-sip-message.bot .coffee-sip-message-bubble h3,
+.coffee-sip-message.bot .coffee-sip-message-bubble h4 {
+  margin: 8px 0 4px 0;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.coffee-sip-message.bot .coffee-sip-message-bubble h1 { font-size: 1.2em; }
+.coffee-sip-message.bot .coffee-sip-message-bubble h2 { font-size: 1.15em; }
+.coffee-sip-message.bot .coffee-sip-message-bubble h3 { font-size: 1.1em; }
+.coffee-sip-message.bot .coffee-sip-message-bubble h4 { font-size: 1.05em; }
 
 .coffee-sip-message-time {
   font-size: 11px;

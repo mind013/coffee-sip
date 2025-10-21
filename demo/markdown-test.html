@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Test - Coffee Sip</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 { color: #333; margin-bottom: 20px; }
+    .info {
+      background: #e7f3ff;
+      padding: 15px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      border-left: 4px solid #007bff;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>📝 Markdown Rendering Test</h1>
+    <div class="info">
+      <p>This demo tests markdown rendering in bot responses. Click the buttons below to inject test messages.</p>
+    </div>
+
+    <div>
+      <button onclick="testBasicMarkdown()">Test Basic Markdown</button>
+      <button onclick="testCodeBlocks()">Test Code Blocks</button>
+      <button onclick="testLists()">Test Lists</button>
+      <button onclick="testAdvanced()">Test Advanced</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { ChatbotWidget } from '../src/index.ts';
+
+    const config = {
+      apiUrl: import.meta.env.VITE_CHATBOT_API_URL || 'http://localhost:3000',
+      apiKey: import.meta.env.VITE_CHATBOT_API_KEY || 'demo-api-key',
+      chatbot: import.meta.env.VITE_CHATBOT_UUID || 'demo-chatbot-uuid',
+    };
+
+    const chatbot = ChatbotWidget.init(config);
+    const instance = ChatbotWidget.getInstance();
+
+    window.testBasicMarkdown = function() {
+      const message = {
+        id: Date.now().toString(),
+        text: `Hello! Here's some **bold text** and *italic text*.
+
+You can also use ~~strikethrough~~ and \`inline code\`.
+
+This is a [link to Google](https://google.com).`,
+        sender: 'bot',
+        timestamp: new Date(),
+      };
+      instance.messages.push(message);
+      // Trigger internal addMessage
+      instance.messagesContainer.dispatchEvent(new CustomEvent('test', { detail: message }));
+      simulateBotMessage(message.text);
+    };
+
+    window.testCodeBlocks = function() {
+      const message = {
+        id: Date.now().toString(),
+        text: `Here's a JavaScript code example:
+
+\`\`\`javascript
+function greet(name) {
+  console.log('Hello, ' + name + '!');
+  return true;
+}
+\`\`\`
+
+And some inline code: \`const x = 42;\``,
+        sender: 'bot',
+        timestamp: new Date(),
+      };
+      simulateBotMessage(message.text);
+    };
+
+    window.testLists = function() {
+      const message = {
+        id: Date.now().toString(),
+        text: `Here are some features:
+
+**Unordered list:**
+- Feature one
+- Feature two
+  - Nested item
+  - Another nested
+- Feature three
+
+**Ordered list:**
+1. First step
+2. Second step
+3. Third step`,
+        sender: 'bot',
+        timestamp: new Date(),
+      };
+      simulateBotMessage(message.text);
+    };
+
+    window.testAdvanced = function() {
+      const message = {
+        id: Date.now().toString(),
+        text: `# Heading 1
+## Heading 2
+### Heading 3
+
+> This is a blockquote.
+> It can span multiple lines.
+
+Here's a table:
+
+| Feature | Status |
+|---------|--------|
+| Markdown | ✅ |
+| Code | ✅ |
+| Lists | ✅ |`,
+        sender: 'bot',
+        timestamp: new Date(),
+      };
+      simulateBotMessage(message.text);
+    };
+
+    function simulateBotMessage(text) {
+      // Get the chatbot instance and manually trigger message addition
+      const chatbotInstance = ChatbotWidget.getInstance();
+      if (chatbotInstance) {
+        // Use the private addMessage method through a workaround
+        const msg = {
+          id: Date.now().toString(),
+          text: text,
+          sender: 'bot',
+          timestamp: new Date(),
+        };
+
+        // Directly add to messages array and DOM
+        chatbotInstance.messages.push(msg);
+
+        // Create and append message element
+        const messagesContainer = chatbotInstance.messagesContainer;
+        if (messagesContainer) {
+          const messageDiv = document.createElement('div');
+          messageDiv.className = 'coffee-sip-message bot';
+
+          const bubble = document.createElement('div');
+          bubble.className = 'coffee-sip-message-bubble';
+
+          // Import marked dynamically
+          import('marked').then(({ marked }) => {
+            bubble.innerHTML = marked.parse(text);
+
+            const time = document.createElement('div');
+            time.className = 'coffee-sip-message-time';
+            const hours = msg.timestamp.getHours().toString().padStart(2, '0');
+            const minutes = msg.timestamp.getMinutes().toString().padStart(2, '0');
+            time.textContent = hours + ':' + minutes;
+
+            messageDiv.appendChild(bubble);
+            messageDiv.appendChild(time);
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          });
+        }
+      }
+    }
+
+    console.log('✅ Markdown test page loaded. Click buttons to test rendering.');
+  </script>
+</body>
+</html>

@@ -261,7 +261,7 @@ window.ChatbotWidget.init({
       chatbot: import.meta.env.VITE_CHATBOT_UUID || 'demo-chatbot-uuid',
     };
 
-    console.log('📝 Loaded config from .env:', { 
+    console.log('📝 Loaded config from .env:', {
       apiUrl: config.apiUrl,
       apiKey: config.apiKey.substring(0, 8) + '...',
       chatbot: config.chatbot.substring(0, 8) + '...',

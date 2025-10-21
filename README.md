@@ -15,8 +15,9 @@ A lightweight, framework-agnostic chatbot widget library that can be embedded on
 - 🔌 **Easy Integration** - Single script tag or npm install
 - 🎣 **Event Hooks** - Listen to open, close, send, and receive events
 - 🌗 **Theme Support** - Light and dark themes out of the box
-- 📦 **TypeScript** - Full type definitions included
-- 🚫 **Zero Dependencies** - No external libraries required
+- � **Markdown Support** - Bot responses rendered with full markdown formatting
+- �📦 **TypeScript** - Full type definitions included
+- 🚫 **Minimal Dependencies** - Only one small dependency (marked.js for markdown)
 
 ## 📦 Installation
 
@@ -266,7 +267,52 @@ You can override the default CSS variables for advanced customization:
 }
 ```
 
-## 🏗️ Development
+## 📝 Markdown Support
+
+Bot responses are automatically rendered with full markdown support using the `marked` library. This allows for rich, formatted responses.
+
+### Supported Markdown Features
+
+- **Bold** and *italic* text
+- `Inline code` and code blocks with syntax highlighting
+- Headers (H1-H4)
+- Ordered and unordered lists
+- Blockquotes
+- Links
+- Tables (GitHub Flavored Markdown)
+
+### Example Bot Response
+
+```json
+{
+  "answer": "Here's how to **install** the package:\n\n```bash\nnpm install coffee-sip\n```\n\nKey features:\n- Easy integration\n- Customizable themes\n- Markdown support"
+}
+```
+
+This will be rendered with proper formatting, bold text, code blocks, and bullet points.
+
+### User Messages
+
+User messages are rendered as plain text (HTML-escaped) for security. Only bot responses support markdown.
+
+## � Customization
+
+### CSS Variables
+
+You can override the default CSS variables for advanced customization:
+
+```css
+.coffee-sip-widget {
+  --cs-primary-color: #007bff;
+  --cs-primary-hover: #0056b3;
+  --cs-bg-color: #ffffff;
+  --cs-text-color: #333333;
+  --cs-user-msg-bg: #007bff;
+  --cs-bot-msg-bg: #f1f3f4;
+  --cs-border-color: #e0e0e0;
+  --cs-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+```
 
 ### Setup
 
