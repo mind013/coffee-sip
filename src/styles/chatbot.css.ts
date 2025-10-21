@@ -78,6 +78,14 @@ export const chatbotStyles = `
   pointer-events: none;
 }
 
+.coffee-sip-widget.position-bottom-right .coffee-sip-chat-window {
+  right: 0;
+}
+
+.coffee-sip-widget.position-bottom-left .coffee-sip-chat-window {
+  left: 0;
+}
+
 .coffee-sip-chat-window.open {
   opacity: 1;
   transform: translateY(0);
