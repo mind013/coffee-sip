@@ -69,10 +69,7 @@ export class Chatbot {
   private createFloatingButton(): HTMLButtonElement {
     const button = createElement('button', 'coffee-sip-button');
     button.innerHTML = `
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-        <path d="M7 9h10v2H7zm0-3h10v2H7z"/>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot-message-square-icon lucide-bot-message-square"><path d="M12 6V2H8"/><path d="M15 11v2"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/><path d="M9 11v2"/></svg>
     `;
     button.addEventListener('click', () => this.toggle());
     return button;
@@ -124,7 +121,7 @@ export class Chatbot {
     // Add welcome message
     this.addMessage({
       id: Date.now().toString(),
-      text: 'Hello! How can I help you today?',
+      text: this.config.welcomeMessage || "Hello! I'm AI Assistant, how can I help you?",
       sender: 'bot',
       timestamp: new Date(),
     });

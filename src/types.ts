@@ -5,6 +5,7 @@ export interface ChatbotConfig {
   theme?: 'light' | 'dark';
   position?: 'bottom-right' | 'bottom-left';
   primaryColor?: string;
+  welcomeMessage?: string;
   onOpen?: () => void;
   onClose?: () => void;
   onMessageSend?: (message: string) => void;

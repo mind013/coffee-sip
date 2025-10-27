@@ -88,6 +88,7 @@ interface ChatbotConfig {
   theme?: 'light' | 'dark'; // UI theme (default: 'light')
   position?: 'bottom-right' | 'bottom-left'; // Widget position (default: 'bottom-right')
   primaryColor?: string;    // Custom primary color (default: '#007bff')
+  welcomeMessage?: string;  // Initial bot message (default: "Hello! I'm AI Assistant, how I can help you?")
 
   // Event Callbacks
   onOpen?: () => void;      // Called when chat window opens
@@ -119,6 +120,17 @@ ChatbotWidget.init({
   chatbot: 'chatbot-id',
   primaryColor: '#e74c3c',
   position: 'bottom-left'
+});
+```
+
+#### Custom Welcome Message
+
+```javascript
+ChatbotWidget.init({
+  apiUrl: 'https://api.example.com/chat',
+  apiKey: 'your-api-key',
+  chatbot: 'chatbot-id',
+  welcomeMessage: 'Welcome to our support chat! How may I assist you today?'
 });
 ```
 

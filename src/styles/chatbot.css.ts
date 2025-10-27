@@ -2,7 +2,7 @@ export const chatbotStyles = `
 /* Coffee Sip Chatbot Widget Styles */
 .coffee-sip-widget {
   --cs-primary-color: #007bff;
-  --cs-primary-hover: #0056b3;
+  --cs-primary-hover: #9abee6ff;
   --cs-bg-color: #ffffff;
   --cs-text-color: #333333;
   --cs-user-msg-bg: #007bff;
