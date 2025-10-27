@@ -1,6 +1,6 @@
 {
   "name": "coffee-sip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight, framework-agnostic chatbot widget library",
   "type": "module",
   "main": "./dist/coffee-sip.umd.js",
