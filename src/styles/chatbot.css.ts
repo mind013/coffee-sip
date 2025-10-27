@@ -61,9 +61,16 @@ export const chatbotStyles = `
 }
 
 .coffee-sip-button svg {
-  width: 28px;
-  height: 28px;
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  min-height: 24px;
+  max-width: 24px;
+  max-height: 24px;
   fill: white;
+  stroke: white;
+  display: block;
+  flex-shrink: 0;
 }
 
 .coffee-sip-button.hidden {
